@@ -9,6 +9,12 @@ fn multiply<'a>(first: &'a i32, second: &'a i32) -> i32 {
 fn choose_first<'a: 'b, 'b>(first: &'a i32, _: &'b i32) -> &'b i32 {
     first
 }
+// If we remove the lifetime specification from the function above, we
+// receive the following compiler error:
+//
+//     error[E0106]: missing lifetime specifier
+//     help: this function's return type contains a borrowed value, but the
+//     signature does not say whether it is borrowed from `first` or `_`.
 
 fn main() {
     let first = 2; // Longer lifetime
